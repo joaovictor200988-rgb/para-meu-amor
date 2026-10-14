@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para meu amor - Little Cat ❤️</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffb6c1 0%, #ffc0cb 50%, #ffe4e1 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #333;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Corações flutuantes de fundo */
+        .floating-heart {
+            position: absolute;
+            color: rgba(220, 20, 60, 0.4);
+            font-size: 20px;
+            user-select: none;
+            pointer-events: none;
+            animation: floatUp 8s infinite linear;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.93);
+            padding: 35px 25px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.25);
+            text-align: center;
+            max-width: 480px;
+            width: 100%;
+            border: 4px solid #ffb6c1;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Avatar Hello Kitty com laço */
+        .hk-avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+            position: relative;
+            background: #fff;
+            border-radius: 50%;
+            border: 3px solid #ff69b4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .hk-face {
+            font-size: 55px;
+            line-height: 1;
+        }
+
+        .bow {
+            position: absolute;
+            top: 5px;
+            right: 15px;
+            font-size: 28px;
+            transform: rotate(15deg);
+        }
+
+        h1 {
+            color: #d62828;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #ff69b4;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        /* Estilo do Contador */
+        .counter-card {
+            background: #fff0f5;
+            border-radius: 15px;
+            padding: 15px 10px;
+            margin: 15px 0 25px;
+            border: 2px dashed #ffb6c1;
+        }
+
+        .counter-title {
+            font-size: 0.9rem;
+            color: #c71585;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .timer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .timer-box {
+            background: #fff;
+            padding: 8px 4px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .timer-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #d62828;
+        }
+
+        .timer-label {
+            font-size: 0.75rem;
+            color: #666;
+        }
+
+        /* Envelope / Carta */
+        .letter-box {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #ffe4e1;
+            box-shadow: inset 0 0 10px rgba(255, 182, 193, 0.2);
+            text-align: left;
+        }
+
+        .letter-box p {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        .letter-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-phrase {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #d62828;
+            margin-top: 15px;
+        }
+
+        /* Botão Interativo */
+        .btn-love {
+            background: linear-gradient(45deg, #ff1493, #ff69b4);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn-love:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 20, 147, 0.6);
+        }
+
+        .footer {
+            margin-top: 25px;
+            font-size: 0.85rem;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Corações caindo/flutuando -->
+    <div id="hearts-container"></div>
+
+    <div class="container">
+        <div class="hk-avatar">
+            <span class="bow">🎀</span>
+            <span class="hk-face">🐱</span>
+        </div>
+
+        <h1>Te amo, Little cat! ❤️</h1>
+        <div class="subtitle">Com todo o carinho e amor do mundo!</div>
+
+        <!-- Contador ao vivo desde 25/02/2026 -->
+        <div class="counter-card">
+            <div class="counter-title">Juntos Há</div>
+            <div class="timer-grid">
+                <div class="timer-box">
+                    <div class="timer-value" id="days">0</div>
+                    <div class="timer-label">Dias</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-value" id="hours">0</div>
+                    <div class="timer-label">Horas</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-value" id="minutes">0</div>
+                    <div class="timer-label">Min</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-value" id="seconds">0</div>
+                    <div class="timer-label">Seg</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensagem/Carta -->
+        <div class="letter-box">
+            <p>
+                Escrevi esta página só para te lembrar do quanto sou imensamente feliz ao seu lado e no nosso relacionamento. Tenho a absoluta certeza de que você é a mulher da minha vida!
+            </p>
+            <p>
+                Cada detalhe do seu jeito, o seu sorriso e cada momento que passamos juntos tornam o meu mundo muito melhor.
+            </p>
+            <div class="highlight-phrase">
+                ❤️ Te amo, Little cat! ❤️
+            </div>
+        </div>
+
+        <button class="btn-love" onclick="surpreender()">Clique para receber amor ✨</button>
+
+        <div class="footer">
+            Especialmente para você 🎀✨
+        </div>
+    </div>
+
+    <script>
+        // Data de início do namoro: 25/02/2026
+        const startDate = new Date('2026-02-25T00:00:00');
+
+        function updateCounter() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / 1000 / 60) % 60);
+                const seconds = Math.floor((diff / 1000) % 60);
+
+                document.getElementById('days').innerText = days;
+                document.getElementById('hours').innerText = hours;
+                document.getElementById('minutes').innerText = minutes;
+                document.getElementById('seconds').innerText = seconds;
+            } else {
+                document.getElementById('days').innerText = 0;
+                document.getElementById('hours').innerText = 0;
+                document.getElementById('minutes').innerText = 0;
+                document.getElementById('seconds').innerText = 0;
+            }
+        }
+
+        setInterval(updateCounter, 1000);
+        updateCounter();
+
+        // Gerador de corações flutuantes no fundo
+        function createFloatingHearts() {
+            const container = document.getElementById('hearts-container');
+            const heartIcons = ['❤️', '🎀', '💖', '💕'];
+            
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('floating-heart');
+                heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+                container.appendChild(heart);
+            }
+        }
+
+        createFloatingHearts();
+
+        // Efeito ao clicar no botão
+        function surpreender() {
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerText = Math.random() > 0.5 ? '❤️' : '🎀';
+                    heart.style.position = 'fixed';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.top = '100vh';
+                    heart.style.fontSize = '30px';
+                    heart.style.transition = 'all 2s ease-out';
+                    heart.style.zIndex = '1000';
+                    document.body.appendChild(heart);
+
+                    setTimeout(() => {
+                        heart.style.top = '-10vh';
+                        heart.style.opacity = '0';
+                    }, 50);
+
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 2000);
+                }, i * 50);
+            }
+            alert('Você é o amor da minha vida! ❤️🐱🎀');
+        }
+    </script>
+</body>
+</html>
